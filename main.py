@@ -12,7 +12,9 @@ def menu ():
     print("2. Add New Course")
     print("3. View ")
     print("4. Enroll ")
-    print("5. Exit\n")
+    print("5  Search")
+    print("6  Delete ")
+    print("7. Exit\n")
 
     option = int(input("Enter your choice: "))
 
@@ -49,9 +51,21 @@ while True:
         print("2. View Courses")
         opt = int(input("Enter your choice: "))
         if opt == 1:
-            display(studentList)
+            if studentList:
+                print("All Students")
+                display(studentList)
+                print()
+            else:
+                print("No students available.")
+                print()
         elif opt == 2:
-           display(courseList)
+            if courseList:
+                print("All Courses")
+                display(courseList)
+                print()
+            else:
+                print("No courses available.")
+                print()
     elif choice == 4:
         if not courseList:
             print("No courses available. Please add a course first.")
@@ -77,6 +91,51 @@ while True:
             else:
                 print("Course not found")
     elif choice == 5:
+        print("1. Search Student")
+        print("2. Search Course")
+        opt = int(input("Enter your choice: "))
+        if opt == 1:
+            
+            search_id = input("Enter the ID of the student to search: ")
+            found_student = findById(studentList, search_id)
+            if found_student:
+                print("Student found:")
+                found_student.getAll()
+            else:
+                print("Student not found.")
+        elif opt == 2:
+            search_id = input("Enter the ID of the course to search: ")
+            found_course = findById(courseList, search_id)
+            if found_course:
+                print("Course found:")
+                found_course.getAll()
+            else:
+                print("Course not found.")
+    elif choice == 6:
+        # Implementation for deleting a student or course
+             print("1. Delete Student")
+             print("2. Delete Course")
+             opt = int(input("Enter your choice: "))
+             if opt == 1:
+                    display(studentList)
+                    del_id = input("Enter the ID of the student to delete: ")
+                    item_to_delete = findById(studentList, del_id)
+                    if item_to_delete:
+                            studentList.remove(item_to_delete)
+                            print(f"{item_to_delete.name} has been deleted successfully.")
+                            
+                    else:
+                        print("Student not found.")
+             elif opt == 2:
+                 display(courseList)
+                 del_id = input("Enter the ID of the course to delete: ")
+                 item_to_delete = findById(courseList, del_id)
+                 if item_to_delete:
+                        courseList.remove(item_to_delete)
+                        print(f"{item_to_delete.name} has been deleted successfully.")
+                 else:
+                    print("Course not found.")
+    elif choice == 7:
         break
     else:
         print("Invalid choice. Please select a valid option.")
