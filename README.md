@@ -6,14 +6,16 @@ A simple Python command-line application for managing students and course enroll
 
 - Add new students with ID, name, and GPA
 - Add new courses with ID, name, and maximum quota
-- View all students or courses
+- View all students or courses (prints a friendly message when lists are empty)
 - Enroll a student in a course
 - Prevent enrolling when the course is full
 - Prevent duplicate enrollments
+- Search for students or courses by ID
+- Delete a student or a course
 
 ## Files
 
-- `main.py` - Application entry point and menu loop
+- `main.py` - Application entry point and menu loop (supports add, view, enroll, search, delete)
 - `student.py` - `Student` class definition
 - `course.py` - `Course` class definition and enrollment logic
 - `service.py` - Utility functions for displaying items and finding entries by ID
@@ -37,20 +39,25 @@ python main.py
 - `2` to add a new course
 - `3` to view students or courses
 - `4` to enroll a student in a course
-- `5` to exit
+- `5` to search for a student or course by ID
+- `6` to delete a student or a course
+- `7` to exit
 
 ## Notes
 
 - Add at least one student and one course before enrolling.
-- The app checks if a course is full before enrollment.
-- The app also checks for duplicate enrollment attempts.
+- The app checks if a course is full before enrollment and prevents duplicates.
+- Viewing lists prints a friendly message when there are no students or courses.
+- The search option (`5`) looks up an entry by ID and prints details if found.
+- The delete option (`6`) removes the selected student or course from memory for the current run.
+- Data is not persisted to disk; all records are lost when the program exits.
 
 ## Future Enhancements
 
-- Add the ability to remove students or courses.
-- Show course enrollment counts and available seats.
-- Save data to a file so records persist between runs.
-- Add search by student or course ID.
+- Add persistent storage (save/load from JSON or CSV).
+- Add update/edit operations for students and courses.
+- Add validation and better input handling (ID format, numeric ranges).
+- Add listing filtered by course or student, and exporting reports.
 
 ## Example
 
@@ -61,7 +68,9 @@ Welcome to Student Course Management System
 2. Add New Course
 3. View
 4. Enroll
-5. Exit
+5. Search
+6. Delete
+7. Exit
 
 Enter your choice: 1
 Enter student ID: S001
